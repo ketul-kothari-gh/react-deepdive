@@ -13,16 +13,18 @@ const ExpenseItem = (props) => {
   // useful when using children prop, this class name can be applied to div that will be wrapper around
   // children prop in custom component
   return (
-    <Card className="expense-item">
-      {/* JSX provides alrternative for certain attributes such as class, for as these are reserved 
+    <li>
+      <Card className="expense-item">
+        {/* JSX provides alrternative for certain attributes such as class, for as these are reserved 
        keywords in JS. 
       */}
-      <ExpenseDate date={props.date} />
-      <div className="expense-item__description">
-        <h2>{props.title}</h2>
-        <div className="expense-item__price">${props.amount}</div>
-      </div>
-    </Card>
+        <ExpenseDate date={props.date} />
+        <div className="expense-item__description">
+          <h2>{props.title}</h2>
+          <div className="expense-item__price">${props.amount}</div>
+        </div>
+      </Card>
+    </li>
   );
 };
 

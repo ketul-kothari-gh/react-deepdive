@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.form-control.invalid input {
+  border-color: red;
+  background: rgb(146, 107, 107);
+}
+
+.form-control.invalid label {
+  color: red;
+}

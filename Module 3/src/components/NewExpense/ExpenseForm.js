@@ -4,6 +4,7 @@ import { useState } from "react";
 function ExpenseForm(props) {
   // There are two ways to maintain state .. either have separate entries
   // or create one object
+
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
@@ -42,7 +43,7 @@ function ExpenseForm(props) {
     event.preventDefault();
     const expense = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
     console.log(expense);
@@ -87,6 +88,7 @@ function ExpenseForm(props) {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={props.onCancelSubmission}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>

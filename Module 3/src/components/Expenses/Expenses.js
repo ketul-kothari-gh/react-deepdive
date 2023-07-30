@@ -1,8 +1,10 @@
 import { useState } from "react";
 import ExpensesFilter from "../ExpensesFilter/ExpensesFilter";
-import ExpenseItem from "./ExpenseItem";
+// import ExpenseItem from "./ExpenseItem";
 import "./Expenses.css";
 import Card from "../UI/Card";
+import ExpensesList from "./ExpensesList";
+import ExpensesChart from "./ExpensesChart";
 
 // using object destructuring
 const Expenses = ({ items }) => {
@@ -10,38 +12,71 @@ const Expenses = ({ items }) => {
 
   const yearFilterChangeHandler = function (filterYear) {
     setYear(filterYear);
-    // this will not immediately show the updated value as state update is scheduled
-    console.log(year);
   };
+
+  const filteredItems = items.filter(
+    (item) => item.date.getFullYear().toString() === year
+  );
+
+  // let contentExpense = <p>No Expenses Found.</p>;
+  // if (filteredItems.length > 0) {
+  //   contentExpense = filteredItems.map((item) => (
+  //     <ExpenseItem
+  //       key={item.id}
+  //       title={item.title}
+  //       amount={item.amount}
+  //       date={item.date}
+  //     ></ExpenseItem>
+  //   ));
+  // }
 
   return (
     <div>
       <Card className="expenses">
-        <p>{year}</p>
         <ExpensesFilter
           defaultYear={year}
           onYearFilterChange={yearFilterChangeHandler}
         />
-        <ExpenseItem
-          title={items[0].title}
-          amount={items[0].amount}
-          date={items[0].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          title={items[1].title}
-          amount={items[1].amount}
-          date={items[1].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          title={items[2].title}
-          amount={items[2].amount}
-          date={items[2].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          title={items[3].title}
-          amount={items[3].amount}
-          date={items[3].date}
-        ></ExpenseItem>
+        <div>
+          <ExpensesChart expenses={filteredItems} />
+          <ExpensesList items={filteredItems} />
+
+          {/* {contentExpense} */}
+
+          {/* map will return new array. React is capable of showing array items in html next to each other.
+          {[<ExpenseItem ... ></ExpenseItem>, <ExpenseItem ... ></ExpenseItem>]}
+          */}
+
+          {/* 
+Short cirucit for conditional rendering
+
+          {filteredItems.length === 0 && <p>No expenses found.</p>}
+          {filteredItems.length > 0 &&
+            filteredItems.map((item) => (
+              <ExpenseItem
+                key={item.id}
+                title={item.title}
+                amount={item.amount}
+                date={item.date}
+              ></ExpenseItem>
+            ))} */}
+
+          {/*
+Ternary operator for conditional rendering
+
+          {filteredItems.length === 0 ? (
+            <p>No expenses found.</p>
+          ) : (
+            filteredItems.map((item) => (
+              <ExpenseItem
+                key={item.id}
+                title={item.title}
+                amount={item.amount}
+                date={item.date}
+              ></ExpenseItem>
+            ))
+          )} */}
+        </div>
       </Card>
     </div>
   );

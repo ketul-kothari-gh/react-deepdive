@@ -5,7 +5,7 @@ import NewExpense from "./components/NewExpense/NewExpense";
 // Identifyying which all components are required is one key aspect in developing react applicatin
 // creating component tree helps in identifying all components required and which component a component will nest in
 const App = () => {
-  const expenses = [
+  const [expenses, setExpenses] = useState([
     {
       id: "e1",
       title: "Toilet Paper",
@@ -25,18 +25,12 @@ const App = () => {
       amount: 450,
       date: new Date(2021, 5, 12),
     },
-  ];
+  ]);
 
   const addExpenseHandler = (expenseData) => {
+    setExpenses((prevState) => [...prevState, expenseData]);
     console.log(expenseData);
   };
-
-  // const [stateExpenses, setStateExpenses] = useState(expenses);
-
-  // function addExpenseHandler(expense) {
-  //   setStateExpenses((prevState) => [...prevState, { id: 1, ...expense }]);
-  //   console.log(stateExpenses);
-  // }
 
   // not allowed in vanilla js.. this is transformed by React build process
   // JSX is actually transformed using React object - which is not required to be imported in recent versions
