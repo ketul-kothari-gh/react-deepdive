@@ -1,6 +1,7 @@
 # Component
 
-Functions that return JSX. Allows to create custom HTML element. When React build process encounters any component, it renders the component's JSX (has to execute the entire component function).
+Components are reusable building blocks which are combined to compose the final user interface. 
+They are functions that return JSX. Allows to create custom HTML element. When React build process encounters any component, it renders the component's JSX (has to execute the entire component function).
 
 # Events
 
